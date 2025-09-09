@@ -1,13 +1,13 @@
-auto_id = 100
+auto_id = 0
 
-def cadastro_usuario(login): # Fuçao para cadastro do usuario
+def cadastro_usuario(login): 
     email = input("Digite o Email: ").lower() 
     senha = input("Digite a senha: ") 
-    for user in login: #Percorre o dicionario para ver se ja esta cadastrado
+    for user in login: 
         if email == user["email"]:
             print("Usuário já cadastrado! Tente outro nome.")
-        else: # Caso o usuario nao esteja cadastrado, faz o cadastro
-            login.append({"email":email, "senha":senha}) #Cadastro do usuario
+        else: 
+            login.append({"email":email, "senha":senha}) 
             print("\nUsuário cadastrado com sucesso!")
             break 
 def sair():
@@ -43,14 +43,15 @@ def add_aluno(alunos, login):
     print("\nCadastro de Login")
     cadastro_usuario(login)
     print("\nCadastro de dados do aluno")
-    nome()
-    cpf()
+    nome = f_nome()
+    cpf = f_cpf()
     matricula = gerar_matricula()
-    turma = input("Digite a turma: ").lower()
+    turma = f_turma()
     curso = input("Digite o curso: ").lower()
-    turno = input("Digite o turno: ").lower()
+    turno = f_turno()
     alunos.append({"nome":nome,"cpf":cpf,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
     print("Aluno adicionado com sucesso!")
+    print(alunos)
     
     
 def gerar_matricula():
@@ -70,21 +71,38 @@ def validar_cpf(cpf):
     dig2 = (soma * 10 % 11) % 10
     return cpf[-2:] == f"{dig1}{dig2}"
 
-def cpf():
+def f_cpf():
     while True:
         cpf_input = input("Digite o CPF (somente números): ")
         if validar_cpf(cpf_input):
-            return False
+            break
         else:
             print("CPF inválido!")
+    return cpf_input
             
-def nome():
+def f_nome():
     while True:
         nome = input("Digite o nome: ").lower()
         if nome.isalpha():
-            return False
+            break
         else:
             print("Nome pode conter apenas letras!")
+    return nome
     
-    
-
+def f_turno():
+    while True:
+        turno = input("Digite um turno: ").lower()
+        if turno == "matutino" or turno == "vespertino" or turno == "noturno":
+            break
+        else:
+            print("Digite um turno valido! (Matutino, Vespertino, Noturno)")
+    return turno
+def f_turma():
+    while True:
+        turma = input("Digite a turma: ").lower()
+        if turma == "A":
+            break
+        else:
+            print("Digite uma turma valida!")
+            print("Turmas dispovineis: ""A"" ")
+    return turma
