@@ -43,13 +43,13 @@ def add_aluno(alunos, login):
     print("\nCadastro de Login")
     cadastro_usuario(login)
     print("\nCadastro de dados do aluno")
-    nome = input("Digite o nome: ").lower()
+    nome()
     cpf()
     matricula = gerar_matricula()
     turma = input("Digite a turma: ").lower()
     curso = input("Digite o curso: ").lower()
     turno = input("Digite o turno: ").lower()
-    alunos.append({"nome":nome,"cpf":cpf_input,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
+    alunos.append({"nome":nome,"cpf":cpf,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
     print("Aluno adicionado com sucesso!")
     
     
@@ -74,9 +74,17 @@ def cpf():
     while True:
         cpf_input = input("Digite o CPF (somente números): ")
         if validar_cpf(cpf_input):
-            print("CPF válido!")
             return False
         else:
             print("CPF inválido!")
+            
+def nome():
+    while True:
+        nome = input("Digite o nome: ").lower()
+        if nome.isalpha():
+            return False
+        else:
+            print("Nome pode conter apenas letras!")
+    
     
 
