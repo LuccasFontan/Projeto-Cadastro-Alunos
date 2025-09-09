@@ -44,12 +44,12 @@ def add_aluno(alunos, login):
     cadastro_usuario(login)
     print("\nCadastro de dados do aluno")
     nome = input("Digite o nome: ").lower()
-    cpf = input("Digite o CPF: ")
+    cpf()
     matricula = gerar_matricula()
     turma = input("Digite a turma: ").lower()
     curso = input("Digite o curso: ").lower()
     turno = input("Digite o turno: ").lower()
-    alunos.append({"nome":nome,"cpf":cpf,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
+    alunos.append({"nome":nome,"cpf":cpf_input,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
     print("Aluno adicionado com sucesso!")
     
     
@@ -58,8 +58,25 @@ def gerar_matricula():
     auto_id +=1
     return auto_id
 
-def retornar_menu():
-    opcaomenu = input("Deseja retornar para o Menu? (S/N) ").lower
-    
+def validar_cpf(cpf):
+    cpf = ''.join(filter(str.isdigit, cpf))
+    if len(cpf) != 11:
+        return False
+    if cpf == cpf[0] * 11:
+        return False
+    soma = sum(int(cpf[i]) * (10 - i) for i in range(9))
+    dig1 = (soma * 10 % 11) % 10
+    soma = sum(int(cpf[i]) * (11 - i) for i in range(10))
+    dig2 = (soma * 10 % 11) % 10
+    return cpf[-2:] == f"{dig1}{dig2}"
+
+def cpf():
+    while True:
+        cpf_input = input("Digite o CPF (somente números): ")
+        if validar_cpf(cpf_input):
+            print("CPF válido!")
+            return False
+        else:
+            print("CPF inválido!")
     
 
