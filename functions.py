@@ -31,28 +31,39 @@ def menu_admin():
            MENU DE OPÇÕES
     =============================
     [1] Adicionar aluno
-    [2] Remover aluno
-    [3] Mostrar média
-    [4] Listar alunos
-    [5] Atualizar aluno
+    [2] Abrir nova turma
+    [3] Remover aluno
+    [4] Mostrar média
+    [5] Listar alunos
+    [6] Atualizar aluno
     [0] Sair
     =============================  
     """)
 
-def add_aluno(alunos, login):
+def add_aluno(alunos,turmas, login):
     print("\nCadastro de Login")
     cadastro_usuario(login)
     print("\nCadastro de dados do aluno")
     nome = f_nome()
     cpf = f_cpf()
     matricula = gerar_matricula()
-    turma = f_turma()
+    turma = f_turma(turmas)
     curso = input("Digite o curso: ").lower()
     turno = f_turno()
     alunos.append({"nome":nome,"cpf":cpf,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
     print("Aluno adicionado com sucesso!")
     print(alunos)
     
+def cadastrar_turma(turmas):
+    while True:
+        turma = input("Digite a turma: ").lower()
+        for i in turmas:
+            if i["turma"] == turma:
+                print("Turma ja cadastrada!")
+            else:
+                turmas.append({"turma":turma})
+                print("Turma cadastrada.")    
+                return False
     
 def gerar_matricula():
     global auto_id
@@ -97,12 +108,26 @@ def f_turno():
         else:
             print("Digite um turno valido! (Matutino, Vespertino, Noturno)")
     return turno
-def f_turma():
+
+def f_turma(turmas):
     while True:
         turma = input("Digite a turma: ").lower()
-        if turma == "A":
+        if turma["turma"] in turmas:
             break
         else:
-            print("Digite uma turma valida!")
-            print("Turmas dispovineis: ""A"" ")
+            print("Turma não encontrada.")
     return turma
+
+def f_turma(turmas):
+    while True:
+        turma_digitada = input("Digite a turma: ").lower()
+        turma_valida = False
+        for t in turmas:
+            if t["turma"] == turma_digitada:
+                turma_valida = True
+                break  
+        if turma_valida:
+            return turma_digitada
+        else:
+            print("Turma inválida! Turmas disponíveis:")
+            print(", ".join(t["turma"] for t in turmas))

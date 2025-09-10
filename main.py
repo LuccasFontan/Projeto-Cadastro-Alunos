@@ -4,7 +4,9 @@ import functions
 login = [
     {"email":"admin","senha":"admin"},
 ]
-
+turmas = [
+    {'turma':"a",}
+]
 alunos = []
 
 
@@ -32,14 +34,16 @@ while True:
                             option = input("Digite a opção desejada: ")
                             match option:
                                 case "1":
-                                    functions.add_aluno(alunos, login)
+                                    functions.add_aluno(alunos, turmas, login,)
                                 case "2":
-                                    pass
+                                    functions.cadastrar_turma(turmas)
                                 case "3":
                                     pass
                                 case "4": 
                                     pass
                                 case "5":
+                                    pass
+                                case "6":
                                     pass
                                 case "0":
                                     functions.sair()
