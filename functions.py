@@ -1,8 +1,6 @@
 auto_id = 0
 
-def cadastro_usuario(login): 
-    email = input("Digite o Email: ").lower() 
-    senha = input("Digite a senha: ") 
+def cadastro_usuario(login, email, senha): 
     for user in login: 
         if email == user["email"]:
             print("Usuário já cadastrado! Tente outro nome.")
@@ -42,13 +40,14 @@ def menu_admin():
 
 def add_aluno(alunos,turmas, login):
     print("\nCadastro de Login")
-    cadastro_usuario(login)
+    email = input("Digite o Email: ").lower() 
+    senha = input("Digite a senha: ") 
+    cadastro_usuario(login, email, senha)
     print("\nCadastro de dados do aluno")
     nome = f_nome()
     cpf = f_cpf()
     matricula = gerar_matricula()
     turma = f_turma(turmas)
-    curso = input("Digite o curso: ").lower()
     turno = f_turno()
     alunos.append({"nome":nome,"cpf":cpf,"matricula":matricula,"turma":turma,"curso":curso,"turno":turno})
     print("Aluno adicionado com sucesso!")

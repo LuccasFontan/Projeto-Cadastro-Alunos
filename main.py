@@ -64,6 +64,8 @@ while True:
                 break
             continue 
         case "2":
+            email = input("Digite o Email: ").lower() 
+            senha = input("Digite a senha: ") 
             cadastro_usuario(login, email, senha)
             continue
         case "3":
