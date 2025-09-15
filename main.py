@@ -2,14 +2,14 @@ from functions import cadastro_usuario
 import functions
 
 login = [
-    {"email":"admin","senha":"admin"},
-]
+    {"email":"lucasfontan@gmail.com","senha":"123"},
+    ]
 turmas = [
-    {'turma':"a",}
-]
-alunos = []
-
-
+    {'turma':"a"},
+    ]
+alunos = [
+    {"nome":"lucas","cpf":"12882462425","matricula":1,"turma":"a","turno":"noturno","email":"lucas@gmail.com","senha":"123"},
+    ]   
 
 while True:
     functions.menu()
@@ -27,31 +27,26 @@ while True:
                         validado = True
                         break
                 if validado: 
-                    if email == "admin":
-                        print("\nAdministrador Logado com sucesso!")
-                        while True:
+                    print("\nLogado com sucesso!")
+                    while True:
                             functions.menu_admin()
                             option = input("Digite a opção desejada: ")
                             match option:
                                 case "1":
-                                    functions.add_aluno(alunos, turmas, login,)
+                                    functions.add_aluno(alunos, turmas)
                                 case "2":
                                     functions.cadastrar_turma(turmas)
                                 case "3":
-                                    pass
+                                    functions.listar_alunos(alunos)
                                 case "4": 
-                                    pass
+                                    functions.buscar_aluno(alunos)
                                 case "5":
-                                    pass
-                                case "6":
-                                    pass
+                                    break
                                 case "0":
                                     functions.sair()
                                 case _:
                                     print("Opção inválida, tente novamente.")
                                     continue
-                    else:
-                        print("Logado com sucesso!")
                     break
                 else:
                     print("Email ou senha Incorreto!") 
@@ -61,8 +56,7 @@ while True:
                 else:
                     print("Você excedeu o limite de tentativas.")
             if validado: 
-                break
-            continue 
+                continue 
         case "2":
             email = input("Digite o Email: ").lower() 
             senha = input("Digite a senha: ") 
