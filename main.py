@@ -8,7 +8,7 @@ turmas = [
     {'turma':"a"},
     ]
 alunos = [
-    {"nome":"lucas","cpf":"12882462425","matricula":1,"turma":"a","turno":"noturno","email":"lucas@gmail.com","senha":"123"},
+    {"nome":"lucas","cpf":"00000000000","matricula":"1","turma":"a","turno":"noturno","email":"lucas@gmail.com","senha":"123"},
     ]   
 
 while True:
